@@ -12,6 +12,7 @@ import { AppRoutingModule } from './/app-routing.module';
 
 import { DrinkService } from './services/drink.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { AddDrinkComponent } from './add-drink/add-drink.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     AppComponent,
     DrinksComponent,
     DrinkDetailComponent,
-    DashboardComponent
+    DashboardComponent,
+    AddDrinkComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),

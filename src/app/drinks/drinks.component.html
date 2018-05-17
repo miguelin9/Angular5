@@ -2,20 +2,11 @@
 
 <!-- Lista sin routas -->
 <ul class="drinks">
-  <li *ngFor="let drink of drinks"
-    [class.selected]="drink === selectedDrink"
-    (click)="onSelect(drink)">
-    <span class="badge">{{drink.id}}</span> {{drink.name}}
-  </li>
-</ul>
-
-<app-drink-detail [drink]="selectedDrink"></app-drink-detail>
-
-<!-- Lista con routas -->
-<ul class="drinks">
-  <li *ngFor="let drink of drinks">
-    <a routerLink="/detail/{{drink.id}}">
+  <li *ngFor="let drink of drinkList">
+    <a routerLink='/detail/{{drink.id}}'>
       <span class="badge">{{drink.id}}</span> {{drink.name}}
     </a>
   </li>
 </ul>
+
+<app-drink-detail [drink]="selectedDrink"></app-drink-detail>

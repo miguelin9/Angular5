@@ -1,19 +1,22 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 
+// firebase
 import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireStorageModule } from 'angularfire2/storage';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireDatabaseModule } from 'angularfire2/database'; 
 import { environment } from '../environments/environment';
-import { DrinksComponent } from './drinks/drinks.component';
 
-import { FormsModule } from '@angular/forms';
-import { DrinkDetailComponent } from './drink-detail/drink-detail.component';
 import { AppRoutingModule } from './/app-routing.module';
-
+import { AddDrinkComponent } from './add-drink/add-drink.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { DrinkDetailComponent } from './drink-detail/drink-detail.component';
 import { DrinkService } from './services/drink.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { AddDrinkComponent } from './add-drink/add-drink.component';
-
+import { DrinksComponent } from './drinks/drinks.component';
+import { FormsModule } from '@angular/forms';
+import { NgModule } from '@angular/core';
 
 @NgModule({
   declarations: [
@@ -24,13 +27,17 @@ import { AddDrinkComponent } from './add-drink/add-drink.component';
     AddDrinkComponent
   ],
   imports: [
-    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireModule.initializeApp(environment.firebase, 'proyecto-tpv'),
+    AngularFireDatabaseModule,
+    // AngularFirestoreModule,
+    // AngularFireAuthModule,
+    // AngularFireStorageModule,
+    AppRoutingModule,
     BrowserModule,
-    FormsModule,
-    AppRoutingModule
+    FormsModule    
   ],
   providers: [
-    DrinkService
+    DrinkService    
   ],
   bootstrap: [AppComponent]
 })

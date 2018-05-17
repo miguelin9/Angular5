@@ -110,3 +110,6 @@ IntelliSense for CSS class names in HTML: Decora el HTML con los nombres de clas
 https://marketplace.visualstudio.com/items?itemName=Zignd.html-css-class-completion
 Bracket Pair Colorizer: Esta extensión permite que los corchetes coincidentes se identifiquen con los colores: 
 https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer
+
+Git History: añade un historial del repositorio.
+https://github.com/DonJayamanne/gitHistoryVSCode

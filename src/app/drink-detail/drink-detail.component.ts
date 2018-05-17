@@ -15,22 +15,22 @@ export class DrinkDetailComponent implements OnInit {
   drink: Drink;
 
   constructor(
-    private route: ActivatedRoute,
-    private drinkService: DrinkService,
-    private location: Location
+    // private route: ActivatedRoute,
+    // private drinkService: DrinkService,
+    // private location: Location
   ) { }
 
   ngOnInit() {
-    this.getDrink();
+    // this.getDrink();
   }
 
-  getDrink(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.drink = this.drinkService.getDrink(id);
-  }
+  // getDrink(): void {
+  //   const id = +this.route.snapshot.paramMap.get('id');
+  //   this.drink = this.drinkService.getDrink(id);
+  // }
 
   goBack(): void {
-    this.location.back();
+    // this.location.back();
   }
 
 }

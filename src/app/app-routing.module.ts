@@ -3,11 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { DrinksComponent } from './drinks/drinks.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DrinkDetailComponent } from './drink-detail/drink-detail.component';
+import { AddDrinkComponent } from './add-drink/add-drink.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'detail/:id', component: DrinkDetailComponent },
   { path: 'dashboard', component: DashboardComponent },
+  { path: 'addDrink', component: AddDrinkComponent },
   { path: 'drinks', component: DrinksComponent }
 ];
 

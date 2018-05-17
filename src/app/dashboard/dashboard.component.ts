@@ -9,16 +9,12 @@ import { DrinkService } from '../services/drink.service';
 })
 export class DashboardComponent implements OnInit {
 
-  drinks: Drink[] = [];
-
   constructor(private drinkService: DrinkService) { }
 
   ngOnInit() {
-    this.getDrinks();
+    
   }
 
-  getDrinks(): void {
-    this.drinks = this.drinkService.getDrinks();
-  }
+
 
 }

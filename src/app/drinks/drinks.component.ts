@@ -9,21 +9,21 @@ import { DrinkService } from '../services/drink.service';
 })
 export class DrinksComponent implements OnInit {
 
-  drinks: Drink[];
-  selectedDrink: Drink;
+  drinkList: Drink[];
 
   constructor(private drinkService: DrinkService) { }
 
   ngOnInit() {
-    this.getDrinks();
-  }
-
-  getDrinks(): void {
-    this.drinks = this.drinkService.getDrinks();
-  }
-
-  onSelect(drink: Drink): void {
-    this.selectedDrink = drink;
+    this.drinkService.getDrinks()
+      .snapshotChanges()
+      .subscribe(item => {
+        this.drinkList = [];
+        item.forEach(element => {
+          let x = element.payload.toJSON();
+          x['$key'] = element.key;
+          this.drinkList.push(x as Drink);
+        });
+      });
   }
 
 }

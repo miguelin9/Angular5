@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Probando';
+
+  navLinks: {label: string, path: string}[] = [
+    {label: 'Administración', path: '/dashboard'},
+    {label: 'Lista', path: '/drinks'},
+    {label: 'Añadir', path: '/addDrink'},
+  ];
+
 }

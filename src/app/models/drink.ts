@@ -1,5 +1,5 @@
 export class Drink {
-    $key: string;
+    $key?: string;
     id: number;
     name: string;
 }

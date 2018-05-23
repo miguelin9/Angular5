@@ -1,0 +1,12 @@
+<h2>Bebidas</h2>
+
+<!-- Lista sin routas -->
+<ul class="products">
+  <li *ngFor="let product of productList">
+    <a routerLink='/detail/{{product.id}}'>
+      <span class="badge">{{product.id}}</span> {{product.name}}
+    </a>
+  </li>
+</ul>
+
+<app-product-detail [product]="selectedProduct"></app-product-detail>

@@ -1,22 +1,22 @@
 <p>
-  add-drink works!
+  add-product works!
 </p>
-<form #drinkForm='ngForm' (ngSubmit)='onSubmit(drinkForm)'>
+<form #productForm='ngForm' (ngSubmit)='onSubmit(productForm)'>
   <input
     type="number"
     name="id"
     #id="ngModel"
-    [(ngModel)]="drinkService.selectDrink.id"
+    [(ngModel)]="productService.selectProduct.id"
     placeholder="Añade un id de bebida"
     >
   <input
     type="text"
     name="name"
     #name="ngModel"
-    [(ngModel)]="drinkService.selectDrink.name"
+    [(ngModel)]="productService.selectProduct.name"
     placeholder="Añade un nombre de bebida"
     >
 
   <button type="submit">Enviar</button>
-  <button type="reset" (click)="resetForm(drinkForm)">Reset</button>
+  <button type="reset" (click)="resetForm(productForm)">Reset</button>
 </form>

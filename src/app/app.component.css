@@ -1,4 +1,9 @@
 nav {
-  max-width: 99%;
-  text-align: center;
+  width: 100%;
+  /* background-color: #B9B3C4; */
+}
+
+a {
+  font-weight: bold;
+  width: 20%;
 }

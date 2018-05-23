@@ -9,13 +9,13 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { environment } from '../environments/environment';
 
 import { AppRoutingModule } from './/app-routing.module';
-import { AddDrinkComponent } from './add-drink/add-drink.component';
+import { AddProductComponent } from './add-product/add-product.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DrinkDetailComponent } from './drink-detail/drink-detail.component';
-import { DrinkService } from './services/drink.service';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { ProductService } from './services/product.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { DrinksComponent } from './drinks/drinks.component';
+import { ProductsComponent } from './products/products.component';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
@@ -24,10 +24,10 @@ import { MaterialModule } from './material/material.module';
 @NgModule({
   declarations: [
     AppComponent,
-    DrinksComponent,
-    DrinkDetailComponent,
+    ProductsComponent,
+    ProductDetailComponent,
     DashboardComponent,
-    AddDrinkComponent
+    AddProductComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase, 'proyecto-tpv'),
@@ -41,7 +41,7 @@ import { MaterialModule } from './material/material.module';
     MaterialModule
   ],
   providers: [
-    DrinkService    
+    ProductService    
   ],
   bootstrap: [AppComponent]
 })

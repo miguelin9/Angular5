@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { NgForm } from '@angular/forms';
-import { Product } from '../models/product';
 
 @Component({
   selector: 'app-add-product',
@@ -25,7 +24,6 @@ export class AddProductComponent implements OnInit {
   resetForm(productForm?: NgForm) {
     if(productForm != null) {
       productForm.reset();
-      this.productService.selectProduct = new Product();
     }
   }
 

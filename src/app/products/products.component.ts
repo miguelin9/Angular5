@@ -10,6 +10,7 @@ import { ProductService } from '../services/product.service';
 export class ProductsComponent implements OnInit {
 
   productList: Product[];
+  displayedColumns = ['id', 'name', 'actions'];
 
   constructor(private productService: ProductService) { }
 
@@ -26,4 +27,10 @@ export class ProductsComponent implements OnInit {
       });
   }
 
+  click(): void {
+    this.productService.addProduct({
+      'id': 3,
+      'name': 'miguel'
+    });
+  }
 }

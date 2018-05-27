@@ -1,12 +1,42 @@
-<h2>Bebidas</h2>
+<mat-card>
+  <mat-card-title>
+    Productos
+  </mat-card-title>
+  <mat-card-content>
+    <mat-table class="mat-elevation-z8" #table [dataSource]="productList" matSort>
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+        <mat-cell *matCellDef="let product"> 
+            <a routerLink='/detail/{{product.id}}'>
+              <span class="badge"> {{product.id}} </span>
+            </a>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> NOMBRE </mat-header-cell>
+        <mat-cell *matCellDef="let product"> {{product.name}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef>
+          <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="addProduct()">
+            <mat-icon color="warn">person_add</mat-icon>
+          </button>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let product">
+          <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="edit()">
+            <mat-icon color="warn">mode_edit</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let product; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </mat-card-content>
+</mat-card>
 
-<!-- Lista sin routas -->
-<ul class="products">
-  <li *ngFor="let product of productList">
-    <a routerLink='/detail/{{product.id}}'>
-      <span class="badge">{{product.id}}</span> {{product.name}}
-    </a>
-  </li>
-</ul>
 
-<app-product-detail [product]="selectedProduct"></app-product-detail>
+<div>
+  <button (click)="click()">Pulsame</button>
+</div>
+
+<!-- <app-product-detail [product]="selectedProduct"></app-product-detail> -->

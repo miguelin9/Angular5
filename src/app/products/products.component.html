@@ -7,9 +7,9 @@
       <ng-container matColumnDef="id">
         <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
         <mat-cell *matCellDef="let product"> 
-            <a routerLink='/detail/{{product.id}}'>
+            <button mat-button matSuffix mat-icon-button routerLink='/detail/{{product.id}}'>
               <span class="badge"> {{product.id}} </span>
-            </a>
+            </button>
         </mat-cell>
       </ng-container>
       <ng-container matColumnDef="name">
@@ -19,12 +19,15 @@
       <ng-container matColumnDef="actions">
         <mat-header-cell *matHeaderCellDef>
           <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="addProduct()">
-            <mat-icon color="warn">person_add</mat-icon>
+            <mat-icon color="primary">person_add</mat-icon>
           </button>
         </mat-header-cell>
         <mat-cell *matCellDef="let product">
-          <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="edit()">
-            <mat-icon color="warn">mode_edit</mat-icon>
+          <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="edit(product)">
+            <mat-icon color="accent">mode_edit</mat-icon>
+          </button>
+          <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="delete(product)">
+            <mat-icon color="warn">delete</mat-icon>
           </button>
         </mat-cell>
       </ng-container>
@@ -33,10 +36,5 @@
     </mat-table>
   </mat-card-content>
 </mat-card>
-
-
-<div>
-  <button (click)="click()">Pulsame</button>
-</div>
 
 <!-- <app-product-detail [product]="selectedProduct"></app-product-detail> -->

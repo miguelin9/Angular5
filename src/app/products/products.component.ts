@@ -27,10 +27,24 @@ export class ProductsComponent implements OnInit {
       });
   }
 
-  click(): void {
+  addProduct(): void {
     this.productService.addProduct({
       'id': 3,
       'name': 'miguel'
     });
+  }
+
+  edit(product): void {
+    this.productService.updateProduct({
+      $key: product.$key,
+      id: 14,
+      name: 'editado'
+    });
+  }
+
+  delete(product): void {
+    alert(product.$key);
+    // this.productService.deleteProduct('-LDVxusdIk6eQ__gGmyZ');
+    this.productService.deleteProduct(product.$key);
   }
 }

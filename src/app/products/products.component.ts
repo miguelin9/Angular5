@@ -12,7 +12,7 @@ import { AddProductDialogComponent } from '../dialogs/add-product-dialog/add-pro
 export class ProductsComponent implements OnInit {
 
   productList: Product[];
-  displayedColumns = ['id', 'name', 'actions'];
+  displayedColumns = ['name', 'price', 'stock', 'actions'];
   dataSource: MatTableDataSource<Product>; // lo mismos datos que el productList pero para poder ordenar.
 
   @ViewChild(MatSort) sort: MatSort;

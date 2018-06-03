@@ -5,12 +5,14 @@ import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'app-add-product-dialog',
-  templateUrl: './add-product-dialog.component.html'
+  templateUrl: './add-product-dialog.component.html',
+  styleUrls: ['./add-product-dialog.component.css']
 })
 export class AddProductDialogComponent implements OnInit {
 
   isEdit: boolean
   product: Product;
+  controlForm: boolean;
 
   constructor(
     public dialogRef: MatDialogRef<AddProductDialogComponent>,
@@ -19,7 +21,7 @@ export class AddProductDialogComponent implements OnInit {
 
   ngOnInit() {
     if (!this.product) {
-      this.product = {id: undefined, name: ''};
+      this.product = {price: undefined, name: '', stock: undefined};
     }
   }
 

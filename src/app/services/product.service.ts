@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../models/product';
-import { PRODUCTS } from '../models/mocks-products';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 
 @Injectable()
@@ -17,15 +16,17 @@ export class ProductService {
 
   addProduct(product: Product) {
     this.productsList.push({
-      id: product.id,
-      name: product.name
+      price: product.price,
+      name: product.name,
+      stock: product.stock
     });
   }
 
   updateProduct(product: Product) {
     this.productsList.update(product.$key, {
-      id: product.id,
-      name: product.name
+      price: product.price,
+      name: product.name,
+      stock: product.stock
     });
   }
 

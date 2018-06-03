@@ -9,10 +9,8 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { environment } from '../environments/environment';
 
 import { AppRoutingModule } from './/app-routing.module';
-import { AddProductComponent } from './add-product/add-product.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { ProductService } from './services/product.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProductsComponent } from './products/products.component';
@@ -27,9 +25,7 @@ import { MaterialModule } from './material/material.module';
   declarations: [
     AppComponent,
     ProductsComponent,
-    ProductDetailComponent,
     DashboardComponent,
-    AddProductComponent,
     YesNoDialogComponent,
     AddProductDialogComponent
   ],

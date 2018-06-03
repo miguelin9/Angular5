@@ -10,7 +10,6 @@ export class AppComponent {
   navLinks: {label: string, path: string}[] = [
     {label: 'Administración', path: '/dashboard'},
     {label: 'Lista', path: '/products'},
-    {label: 'Añadir', path: '/addProduct'},
   ];
 
 }

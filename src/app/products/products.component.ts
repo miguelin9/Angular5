@@ -3,6 +3,7 @@ import { Product } from '../models/product';
 import { ProductService } from '../services/product.service';
 import { MatDialog, MatSort, MatTableDataSource } from '@angular/material';
 import { AddProductDialogComponent } from '../dialogs/add-product-dialog/add-product-dialog.component';
+import { YesNoDialogComponent } from '../dialogs/yes-no-dialog/yes-no-dialog.component';
 
 @Component({
   selector: 'app-products',
@@ -56,6 +57,12 @@ export class ProductsComponent implements OnInit {
   }
 
   delete(product): void {
-    this.productService.deleteProduct(product.$key);
+    this.matDialog.open(YesNoDialogComponent).afterClosed().subscribe(
+      data => {
+        if (data) {
+          this.productService.deleteProduct(product.$key)
+        }
+      }
+    );
   }
 }

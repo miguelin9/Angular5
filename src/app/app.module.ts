@@ -18,6 +18,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProductsComponent } from './products/products.component';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
+import { YesNoDialogComponent } from './dialogs/yes-no-dialog/yes-no-dialog.component';
+import { AddProductDialogComponent } from './dialogs/add-product-dialog/add-product-dialog.component';
 
 import { MaterialModule } from './material/material.module';
 
@@ -27,7 +29,13 @@ import { MaterialModule } from './material/material.module';
     ProductsComponent,
     ProductDetailComponent,
     DashboardComponent,
-    AddProductComponent
+    AddProductComponent,
+    YesNoDialogComponent,
+    AddProductDialogComponent
+  ],
+  entryComponents: [
+    YesNoDialogComponent,
+    AddProductDialogComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase, 'proyecto-tpv'),

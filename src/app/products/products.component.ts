@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Product } from '../models/product';
 import { ProductService } from '../services/product.service';
+import { MatDialog, MatSort, MatTableDataSource } from '@angular/material';
+import { AddProductDialogComponent } from '../dialogs/add-product-dialog/add-product-dialog.component';
 
 @Component({
   selector: 'app-products',
@@ -11,40 +13,49 @@ export class ProductsComponent implements OnInit {
 
   productList: Product[];
   displayedColumns = ['id', 'name', 'actions'];
+  dataSource: MatTableDataSource<Product>; // lo mismos datos que el productList pero para poder ordenar.
 
-  constructor(private productService: ProductService) { }
+  @ViewChild(MatSort) sort: MatSort;
 
-  ngOnInit() {
+  constructor(
+    private productService: ProductService,
+    public matDialog: MatDialog
+  ) { }
+
+  refreshData() {
     this.productService.getProducts()
       .snapshotChanges()
-      .subscribe(item => {
+      .subscribe(dataSnapshotList => {
         this.productList = [];
-        item.forEach(element => {
-          let x = element.payload.toJSON();
-          x['$key'] = element.key;
-          this.productList.push(x as Product);
+        dataSnapshotList.forEach(dataSnapshot => {
+          let product = dataSnapshot.payload.toJSON();
+          product['$key'] = dataSnapshot.key;
+          this.productList.push(product as Product);
         });
+        this.dataSource = new MatTableDataSource(this.productList);
+        this.dataSource.sort = this.sort;
       });
   }
 
+  ngOnInit() {
+    this.refreshData();
+  }
+
   addProduct(): void {
-    this.productService.addProduct({
-      'id': 3,
-      'name': 'miguel'
-    });
+    const dialogRef = this.matDialog.open(AddProductDialogComponent);
+    dialogRef.componentInstance.isEdit = false;
   }
 
   edit(product): void {
-    this.productService.updateProduct({
-      $key: product.$key,
-      id: 14,
-      name: 'editado'
+    const dialogRef = this.matDialog.open(AddProductDialogComponent);
+    dialogRef.componentInstance.product = product;
+    dialogRef.componentInstance.isEdit = true;
+    dialogRef.afterClosed().subscribe(data => {
+      this.refreshData();
     });
   }
 
   delete(product): void {
-    alert(product.$key);
-    // this.productService.deleteProduct('-LDVxusdIk6eQ__gGmyZ');
     this.productService.deleteProduct(product.$key);
   }
 }

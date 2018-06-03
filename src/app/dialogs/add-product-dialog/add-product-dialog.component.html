@@ -1,0 +1,22 @@
+<h2 mat-dialog-title *ngIf='!isEdit'>Añadir Producto</h2>
+<h2 mat-dialog-title *ngIf='isEdit'>Editar Producto</h2>
+
+<mat-dialog-content>
+  <mat-form-field>
+    <input matInput placeholder="Nombre" [(ngModel)]='product.name'>
+    <mat-error>
+      El nombre es <strong>obligatorio</strong>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <!-- <mat-label>ID</mat-label> -->
+    <input matInput type="number" placeholder="ID" [(ngModel)]='product.id'>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button mat-button *ngIf="!isEdit"(click)='addProduct()' cdkFocusInitial>Aceptar</button>
+  <button mat-button *ngIf="isEdit"(click)='editProduct()' cdkFocusInitial>Aceptar</button>
+</mat-dialog-actions>  
+
+

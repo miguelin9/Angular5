@@ -1,5 +1,3 @@
-import { AppComponent } from './app.component';
-
 // firebase
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
@@ -8,18 +6,32 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database'; 
 import { environment } from '../environments/environment';
 
+// modulos
 import { AppRoutingModule } from './/app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ProductService } from './services/product.service';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { ProductsComponent } from './products/products.component';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
+
+// servicios
+import { ProductService } from './services/product/product.service';
+import { CommandService } from './services/command/command.service';
+
+// Dialogos (necesita entryComponents)
 import { YesNoDialogComponent } from './dialogs/yes-no-dialog/yes-no-dialog.component';
 import { AddProductDialogComponent } from './dialogs/add-product-dialog/add-product-dialog.component';
 
+// Componente para tener la librería material design
 import { MaterialModule } from './material/material.module';
+
+// Componentes
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ProductsComponent } from './dashboard/products/products.component';
+import { AppComponent } from './app.component';
+import { CommandsComponent } from './bar/commands/commands.component';
+import { TablesComponent } from './bar/tables/tables.component';
+import { BarComponent } from './bar/bar.component';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +39,10 @@ import { MaterialModule } from './material/material.module';
     ProductsComponent,
     DashboardComponent,
     YesNoDialogComponent,
-    AddProductDialogComponent
+    AddProductDialogComponent,
+    CommandsComponent,
+    TablesComponent,
+    BarComponent
   ],
   entryComponents: [
     YesNoDialogComponent,
@@ -45,7 +60,8 @@ import { MaterialModule } from './material/material.module';
     MaterialModule
   ],
   providers: [
-    ProductService    
+    ProductService,
+    CommandService    
   ],
   bootstrap: [AppComponent]
 })

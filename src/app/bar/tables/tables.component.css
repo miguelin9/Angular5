@@ -1,0 +1,7 @@
+table, a {
+  width: 100%;
+}
+
+mat-grid-tile {
+  cursor: pointer;
+}

@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Product } from '../models/product';
-import { ProductService } from '../services/product.service';
+import { Product } from '../../models/product';
+import { ProductService } from '../../services/product/product.service';
 import { MatDialog, MatSort, MatTableDataSource } from '@angular/material';
-import { AddProductDialogComponent } from '../dialogs/add-product-dialog/add-product-dialog.component';
-import { YesNoDialogComponent } from '../dialogs/yes-no-dialog/yes-no-dialog.component';
+import { AddProductDialogComponent } from '../../dialogs/add-product-dialog/add-product-dialog.component';
+import { YesNoDialogComponent } from '../../dialogs/yes-no-dialog/yes-no-dialog.component';
 
 @Component({
   selector: 'app-products',
@@ -14,7 +14,7 @@ export class ProductsComponent implements OnInit {
 
   productList: Product[];
   displayedColumns = ['name', 'price', 'stock', 'actions'];
-  dataSource: MatTableDataSource<Product>; // lo mismos datos que el productList pero para poder ordenar.
+  dataSource: MatTableDataSource<Product>; // lo mismos datos que el productList pero para poder ordenar en la tabla.
 
   @ViewChild(MatSort) sort: MatSort;
 

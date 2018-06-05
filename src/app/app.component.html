@@ -1,13 +1,23 @@
-<nav mat-tab-nav-bar backgroundColor='primary'>
-  <a mat-tab-link
-    *ngFor="let link of navLinks"
-    [routerLink]="link.path"
-    routerLinkActive #rla="routerLinkActive"
-    [active]="rla.isActive">
-    {{link.label}}
-  </a>
-</nav>
+<div class="page">
+  <nav mat-tab-nav-bar backgroundColor='primary'>
+    <a mat-tab-link class="toolbar"
+      *ngFor="let link of navLinks"
+      [routerLink]="link.path"
+      routerLinkActive #rla="routerLinkActive"
+      [active]="rla.isActive">
+      {{link.label}}
+    </a>
+  </nav>
+    
+  <router-outlet></router-outlet>
   
-<router-outlet></router-outlet>
+  <!-- Pie de página -->
+  <mat-toolbar color='primary' class="footer">
+    <div layout='row' layout-align='center center' flex>
+      &copy; IES Virgen del carmen de Jaén. Desarrollo de aplicaciones Multiplataforma. Miguel Castillo Palomo.
+    </div>
+  </mat-toolbar>
+</div>
+
 
 <!-- primary, accent, warn -->

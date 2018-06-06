@@ -1,0 +1,45 @@
+<mat-card>
+    <mat-card-title>
+      <span *ngIf="command.table > 0; else else_content">
+        Comanda de la Mesa {{command.table}}
+      </span>
+      <ng-template #else_content>
+        <span>Comanda de Barra</span>
+      </ng-template>
+    </mat-card-title>
+    <mat-card-content>
+      <table>
+        <tr>
+          <td>
+            <form>
+              <div *ngIf="state.checked" class="block">
+                <mat-form-field>
+                  <input matInput autocomplete="off" type="number" placeholder="Mesa" [(ngModel)]='command.table' [ngModelOptions]="{standalone: true}">
+                </mat-form-field>
+              </div>
+              <div *ngIf="state.checked" class="block">
+                <mat-form-field class='cl-6'>
+                  <input matInput autocomplete="off" type="text" placeholder="Comentario" [(ngModel)]='command.comment' [ngModelOptions]="{standalone: true}">
+                </mat-form-field>
+              </div>  
+              <div *ngIf="state.checked" class="block">
+                  <mat-form-field class='cl-6'>
+                    <input matInput autocomplete="off" type="number" placeholder="Propina" [(ngModel)]='command.tip' [ngModelOptions]="{standalone: true}">
+                  </mat-form-field>
+                </div>  
+              <div class="block">
+                <mat-slide-toggle color="primary" #state [(ngModel)]='command.state' [ngModelOptions]="{standalone: true}"></mat-slide-toggle>
+                <span *ngIf="state.checked">Abierta</span>
+                <span *ngIf="!state.checked">Cerrada</span>
+              </div>    
+            </form>
+          </td>
+          <td>
+            <ng-template [ngIf]="state.checked">
+              <app-products-command></app-products-command>
+            </ng-template>
+          </td>
+        </tr>
+      </table>
+  </mat-card-content>
+</mat-card>

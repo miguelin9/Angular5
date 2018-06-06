@@ -1,0 +1,8 @@
+.mat-column-price,
+.mat-column-stock {
+  max-width: 10%;
+}
+
+.mat-column-actions {
+  max-width: 15%;
+}

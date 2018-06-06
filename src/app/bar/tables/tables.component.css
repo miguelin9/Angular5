@@ -5,3 +5,8 @@ table, a {
 mat-grid-tile {
   cursor: pointer;
 }
+
+div {
+  margin: 10px;
+  display: inline;
+}

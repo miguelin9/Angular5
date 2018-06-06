@@ -2,8 +2,11 @@ import { Product } from "./product";
 
 export class Command {
     $key?: string;
-    id: number;
-    table: number;
+    table?: number;
+    state: boolean;
     productList: Product[];
-    datetime: Date;
+    datetimeOpen: Date;
+    datetimeClose: Date;
+    comment?: string;
+    tip?: number;
 }

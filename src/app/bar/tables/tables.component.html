@@ -1,14 +1,21 @@
 <mat-card>
     <mat-card-title>
-      Mesas
+      <div>
+        Mesas
+      </div>
+      <div>
+        <button (click)="addTable()">+</button>
+        <button (click)="deleteTable()">-</button>
+      </div>
     </mat-card-title>
     <mat-card-content>
-      <mat-grid-list cols="3" gutterSize="40px">
-        <mat-grid-tile class="mat-elevation-z8" style="background: lightblue" rowspan="1" colspan="3">BARRA</mat-grid-tile>
-        <mat-grid-tile class="mat-elevation-z8" style="background: lightgreen" rowspan="2" colspan="1">MESA 1</mat-grid-tile>
-        <mat-grid-tile class="mat-elevation-z8" style="background: lightpink" rowspan="1" colspan="1">MESA 2</mat-grid-tile>
-        <mat-grid-tile class="mat-elevation-z8" style="background: lightsalmon" rowspan="2" colspan="1">MESA 3</mat-grid-tile>
-        <mat-grid-tile class="mat-elevation-z8" style="background: lightseagreen" rowspan="1" colspan="1">MESA 4</mat-grid-tile>
+      <mat-grid-list cols="3" gutterSize="5px">
+      <ng-template ngFor let-table [ngForOf]="tables" let-i="index">
+      <mat-grid-tile (click)="openTable(i)"
+        style="background: lightblue">
+        {{table}}
+      </mat-grid-tile>
+      </ng-template>
       </mat-grid-list>
     </mat-card-content>
   </mat-card>

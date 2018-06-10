@@ -6,3 +6,19 @@
 table {
   width: 100%;
 }
+
+.col-6 {
+  width: 50%
+}
+
+.col-1 {
+  max-width: 10%;
+}
+
+.mat-table {
+  display: table;
+}
+
+b {
+  font-size: 20px;
+}

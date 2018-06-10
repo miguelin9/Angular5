@@ -1,9 +1,9 @@
-import { AddEditCommandDialogComponent } from '../../dialogs/add-edit-command-dialog/add-edit-command-dialog.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommandService } from '../../services/command/command.service';
 import { Command } from '../../models/command';
 import { MatDialog, MatSort, MatTableDataSource } from '@angular/material';
 import { YesNoDialogComponent } from '../../dialogs/yes-no-dialog/yes-no-dialog.component';
+import { Product } from '../../models/product';
 
 
 @Component({
@@ -44,19 +44,20 @@ export class CommandsComponent implements OnInit {
   }
 
   addCommand(): void {
-    const dialogRef = this.matDialog.open(AddEditCommandDialogComponent);
-    dialogRef.componentInstance.isEdit = false;
+    this.commandService.selectCommand = new Command();
+    this.commandService.selectCommand.state = true;
+    this.commandService.selectCommand.productList = new Array<Product>();
   }
 
-  editCommand(command): void {
-    this.commandService.selectCommand = command;
+  editCommand(command: Command): void {
+    this.commandService.openCommandWithEdit(command);
   }
 
-  deleteCommand(product): void {
+  deleteCommand(command: Command): void {
     this.matDialog.open(YesNoDialogComponent).afterClosed().subscribe(
       data => {
         if (data) {
-          this.commandService.deleteCommand(product.$key)
+          this.commandService.deleteCommand(command.$key)
         }
       }
     );

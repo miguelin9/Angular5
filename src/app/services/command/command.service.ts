@@ -23,6 +23,12 @@ export class CommandService {
     this.selectCommand.datetimeClose = undefined;
   }
 
+  openCommandWithEdit(command: Command) {
+    this.selectCommand = command;
+    this.selectCommand.productList = Object.values(command.productList);
+    this.selectCommand.state = true;
+  }
+
   saveCommand(total: number) {
     this.selectCommand.datetimeClose = new Date().toLocaleString();
     this.selectCommand.state = false;
@@ -31,21 +37,7 @@ export class CommandService {
   }
 
   addCommand(command: Command) {
-    console.log(command);
-    console.log('guardada comanda');
     this.commandsList.push(command);
-  }
-
-  updateCommand(command: Command) {
-    this.commandsList.update(command.$key, {
-      table: command.table,
-      state: command.state,
-      productList: command.productList,
-      datetimeOpen: command.datetimeOpen,
-      datetimeClose: command.datetimeClose,
-      comment: command.comment,
-      tip: command.tip
-    });
   }
 
   deleteCommand($key: string) {

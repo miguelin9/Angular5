@@ -31,7 +31,6 @@ import { AppComponent } from './app.component';
 import { CommandsComponent } from './bar/commands/commands.component';
 import { TablesComponent } from './bar/tables/tables.component';
 import { BarComponent } from './bar/bar.component';
-import { AddEditCommandDialogComponent } from './dialogs/add-edit-command-dialog/add-edit-command-dialog.component';
 import { CommandComponent } from './bar/command/command.component';
 import { ProductsCommandComponent } from './bar/command/products-command/products-command.component';
 
@@ -46,14 +45,12 @@ import { ProductsCommandComponent } from './bar/command/products-command/product
     CommandsComponent,
     TablesComponent,
     BarComponent,
-    AddEditCommandDialogComponent,
     CommandComponent,
     ProductsCommandComponent
   ],
   entryComponents: [
     YesNoDialogComponent,
-    AddProductDialogComponent,
-    AddEditCommandDialogComponent
+    AddProductDialogComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase, 'proyecto-tpv'),

@@ -2,8 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatSort, MatTableDataSource } from '@angular/material';
 import { Product } from '../../../models/product';
 import { ProductService } from '../../../services/product/product.service';
-import { AddProductDialogComponent } from '../../../dialogs/add-product-dialog/add-product-dialog.component';
-import { YesNoDialogComponent } from '../../../dialogs/yes-no-dialog/yes-no-dialog.component';
+import { CommandService } from '../../../services/command/command.service';
 
 @Component({
   selector: 'app-products-command',
@@ -20,7 +19,8 @@ export class ProductsCommandComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    public matDialog: MatDialog
+    public matDialog: MatDialog,
+    private commandService: CommandService
   ) { }
 
   refreshData() {
@@ -42,27 +42,14 @@ export class ProductsCommandComponent implements OnInit {
     this.refreshData();
   }
 
-  addProduct(): void {
-    const dialogRef = this.matDialog.open(AddProductDialogComponent);
-    dialogRef.componentInstance.isEdit = false;
-  }
-
-  edit(product): void {
-    const dialogRef = this.matDialog.open(AddProductDialogComponent);
-    dialogRef.componentInstance.product = product;
-    dialogRef.componentInstance.isEdit = true;
-    dialogRef.afterClosed().subscribe(data => {
-      this.refreshData();
+  add(product): void {
+    this.commandService.selectCommand.productList.push({
+      name: product.name,
+      price: product.price
     });
   }
 
   delete(product): void {
-    this.matDialog.open(YesNoDialogComponent).afterClosed().subscribe(
-      data => {
-        if (data) {
-          this.productService.deleteProduct(product.$key)
-        }
-      }
-    );
+    this.commandService.selectCommand.productList.pop();
   }
 }

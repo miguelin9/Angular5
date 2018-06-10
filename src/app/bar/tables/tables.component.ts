@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CommandService } from '../../services/command/command.service';
+import { Command } from '../../models/command';
 
 @Component({
   selector: 'app-tables',
@@ -8,25 +10,35 @@ import { Component, OnInit } from '@angular/core';
 export class TablesComponent implements OnInit {
 
   tables = ['Barra'];
-  counter = 1;
 
-  constructor() { }
+  constructor(
+    private commandService: CommandService
+  ) { }
 
   ngOnInit() {
   }
 
   addTable() {
-    this.tables.push('Mesa ' + this.counter);
-    this.counter = this.counter + 1;
+    this.tables.push('Mesa ' + this.tables.length);
   }
 
   deleteTable() {
-    this.tables.pop();
-    this.counter = this.counter - 1;
+    if (this.tables.length > 1) {
+      this.tables.pop();
+    }
   }
 
-  openTable(index: number) {
-    console.log(index);
+  openCommand(index: number) {
+    this.commandService.openCommandWithTable(index);
   }
 
 }
+
+// $key?: string;
+// table?: number;
+// state: boolean;
+// productList: Product[];
+// datetimeOpen: Date;
+// datetimeClose: Date;
+// comment?: string;
+// tip?: number;

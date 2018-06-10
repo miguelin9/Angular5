@@ -13,18 +13,15 @@
           <mat-cell *matCellDef="let product"> {{product.price}}€ </mat-cell>
         </ng-container>
         <ng-container matColumnDef="stock">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> UNIDADES </mat-header-cell>
+          <mat-header-cell *matHeaderCellDef mat-sort-header> STOCK </mat-header-cell>
           <mat-cell *matCellDef="let product"> {{product.stock}} </mat-cell>
         </ng-container>
         <ng-container matColumnDef="actions">
           <mat-header-cell *matHeaderCellDef>
-            <button mat-raised-button color="primary" (click)="addProduct()">
-              Añadir
-            </button>
           </mat-header-cell>
           <mat-cell *matCellDef="let product">
-            <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="edit(product)">
-              <mat-icon color="accent">mode_edit</mat-icon>
+            <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="add(product)">
+              <mat-icon color="accent">add</mat-icon>
             </button>
             <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="delete(product)">
               <mat-icon color="warn">delete</mat-icon>

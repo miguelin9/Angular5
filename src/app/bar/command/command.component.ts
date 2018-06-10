@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommandService } from '../../services/command/command.service';
 import { Command } from '../../models/command';
+import { Product } from '../../models/product';
 
 @Component({
   selector: 'app-command',
@@ -9,16 +10,28 @@ import { Command } from '../../models/command';
 })
 export class CommandComponent implements OnInit {
 
-  command = new Command();
+  displayedColumns = ['name', 'price'];
 
   constructor(private commandService: CommandService) { }
 
-  ngOnInit() {
-    this.refreshData();
+  ngOnInit() {}
+
+  saveCommand(total: number) {
+    this.commandService.saveCommand(total);
   }
 
-  refreshData() {
-    this.commandService.selectCommand;
+  getTotalCost(): number {
+    var total: number = 0;
+    for (let index = 0; index < this.commandService.selectCommand.productList.length; index++) {
+      total = total + this.commandService.selectCommand.productList[index].price;
+    }
+
+    return total;
+  }
+
+  deleteProduct(product: Product): void {
+    let index = this.commandService.selectCommand.productList.indexOf(product);
+    this.commandService.selectCommand.productList.splice(index, 1);
   }
 
 }

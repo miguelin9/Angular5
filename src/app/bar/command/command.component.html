@@ -1,7 +1,7 @@
-<mat-card>
+<mat-card *ngIf="commandService.selectCommand.state">
     <mat-card-title>
-      <span *ngIf="command.table > 0; else else_content">
-        Comanda de la Mesa {{command.table}}
+      <span *ngIf="commandService.selectCommand.table >= 1; else else_content">
+        Comanda de la Mesa {{commandService.selectCommand.table}}
       </span>
       <ng-template #else_content>
         <span>Comanda de Barra</span>
@@ -11,33 +11,67 @@
       <table>
         <tr>
           <td>
-            <form>
-              <div *ngIf="state.checked" class="block">
-                <mat-form-field>
-                  <input matInput autocomplete="off" type="number" placeholder="Mesa" [(ngModel)]='command.table' [ngModelOptions]="{standalone: true}">
-                </mat-form-field>
-              </div>
-              <div *ngIf="state.checked" class="block">
-                <mat-form-field class='cl-6'>
-                  <input matInput autocomplete="off" type="text" placeholder="Comentario" [(ngModel)]='command.comment' [ngModelOptions]="{standalone: true}">
-                </mat-form-field>
-              </div>  
-              <div *ngIf="state.checked" class="block">
-                  <mat-form-field class='cl-6'>
-                    <input matInput autocomplete="off" type="number" placeholder="Propina" [(ngModel)]='command.tip' [ngModelOptions]="{standalone: true}">
-                  </mat-form-field>
-                </div>  
-              <div class="block">
-                <mat-slide-toggle color="primary" #state [(ngModel)]='command.state' [ngModelOptions]="{standalone: true}"></mat-slide-toggle>
-                <span *ngIf="state.checked">Abierta</span>
-                <span *ngIf="!state.checked">Cerrada</span>
-              </div>    
-            </form>
-          </td>
-          <td>
-            <ng-template [ngIf]="state.checked">
-              <app-products-command></app-products-command>
+            <div class="block">
+              <!-- <ng-template ngFor let-product [ngForOf]="commandService.selectCommand.productList"> -->
+                
+                <table class="mat-table">
+                  <thead>
+                    <tr class="mat-header-row">
+                      <th class="mat-header-cell"> Producto </th>
+                      <th class="mat-header-cell"> Precio </th>
+                      <th class="mat-header-cell"> Borrar </th>
+                    </tr>
+                    </thead>
+                  <tbody>
+                    <tr class="mat-row" *ngFor="let product of commandService.selectCommand.productList">
+                      <td class="mat-cell"> {{product.name}} </td>
+                      <td class="mat-cell"> {{product.price}} € </td>
+                      <td class="mat-cell">
+                        <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="deleteProduct(product)">
+                          <mat-icon color="warn">delete</mat-icon>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr class="mat-row">
+                      <td class="mat-cell"><b>Total</b></td>
+                      <td class="mat-cell" #total><b>{{getTotalCost()}} €</b></td>
+                    </tr>
+                  </tbody>
+                </table>              
+                
+              <!-- </ng-template> -->
+            </div>
+            <span *ngIf="commandService.selectCommand.state;" else aux color="warning">Sin pagar</span>
+            <ng-template #aux>
+              <span color="primary">Pagada</span>
             </ng-template>
+            <div class="block">
+              <mat-form-field>
+                <input matInput autocomplete="off" type="number" placeholder="Mesa" [(ngModel)]='commandService.selectCommand.table' [ngModelOptions]="{standalone: true}">
+              </mat-form-field>
+            </div>
+            <div class="block">
+              <mat-form-field class='cl-6'>
+                <input matInput autocomplete="off" type="text" placeholder="Comentario" [(ngModel)]='commandService.selectCommand.comment' [ngModelOptions]="{standalone: true}">
+              </mat-form-field>
+            </div>  
+            <div class="block">
+              <mat-form-field class='cl-6'>
+                <input matInput autocomplete="off" type="number" placeholder="Propina" [(ngModel)]='commandService.selectCommand.tip' [ngModelOptions]="{standalone: true}">
+              </mat-form-field>
+            </div>  
+            
+            <!-- <div class="block">
+              <mat-slide-toggle color="primary" #state [(ngModel)]='commandService.selectCommand.state' [ngModelOptions]="{standalone: true}"></mat-slide-toggle>
+              <span *ngIf="state.checked">Abierta</span>
+              <span *ngIf="!state.checked">Pagada</span>
+            </div>     -->
+            <button mat-raised-button color="primary" (click)="saveCommand(total)">
+              Guardar
+            </button>
+          </td>
+          <td>            
+            <app-products-command></app-products-command>          
           </td>
         </tr>
       </table>

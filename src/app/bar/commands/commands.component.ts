@@ -49,12 +49,7 @@ export class CommandsComponent implements OnInit {
   }
 
   editCommand(command): void {
-    const dialogRef = this.matDialog.open(AddEditCommandDialogComponent);
-    dialogRef.componentInstance.command = command;
-    dialogRef.componentInstance.isEdit = true;
-    dialogRef.afterClosed().subscribe(data => {
-      this.refreshData();
-    });
+    this.commandService.selectCommand = command;
   }
 
   deleteCommand(product): void {

@@ -4,17 +4,21 @@
         Mesas
       </div>
       <div>
-        <button (click)="addTable()">+</button>
-        <button (click)="deleteTable()">-</button>
+        <button mat-button matSuffix mat-icon-button (click)="addTable()">
+          <mat-icon color="primary">add</mat-icon>
+        </button>
+        <button mat-button matSuffix mat-icon-button (click)="deleteTable()">
+          <mat-icon color="warn">remove</mat-icon>
+        </button>
       </div>
     </mat-card-title>
     <mat-card-content>
       <mat-grid-list cols="3" gutterSize="5px">
       <ng-template ngFor let-table [ngForOf]="tables" let-i="index">
-      <mat-grid-tile (click)="openTable(i)"
-        style="background: lightblue">
-        {{table}}
-      </mat-grid-tile>
+        <mat-grid-tile (click)="openCommand(i)"
+          style="background: lightblue">
+          {{table}}
+        </mat-grid-tile>
       </ng-template>
       </mat-grid-list>
     </mat-card-content>

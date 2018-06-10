@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Command } from '../../models/command';
+import { Product } from '../../models/product';
 
 @Injectable()
 export class CommandService {
@@ -14,15 +15,25 @@ export class CommandService {
     return this.commandsList = this.firebase.list('commands');
   }
 
+  openCommandWithTable(numberTable: number) {
+    this.selectCommand.table = numberTable;
+    this.selectCommand.state = true;
+    this.selectCommand.productList = new Array<Product>();
+    this.selectCommand.datetimeOpen = new Date().toLocaleString();
+    this.selectCommand.datetimeClose = undefined;
+  }
+
+  saveCommand(total: number) {
+    this.selectCommand.datetimeClose = new Date().toLocaleString();
+    this.selectCommand.state = false;
+    this.selectCommand.total = total;
+    this.addCommand(this.selectCommand);
+  }
+
   addCommand(command: Command) {
-    this.commandsList.push({
-      table: command.table,
-      state: command.state,
-      productList: command.productList,
-      datetimeOpen: command.datetimeOpen,
-      datetimeClose: command.datetimeClose,
-      tip: command.tip
-    });
+    console.log(command);
+    console.log('guardada comanda');
+    this.commandsList.push(command);
   }
 
   updateCommand(command: Command) {
@@ -32,6 +43,7 @@ export class CommandService {
       productList: command.productList,
       datetimeOpen: command.datetimeOpen,
       datetimeClose: command.datetimeClose,
+      comment: command.comment,
       tip: command.tip
     });
   }

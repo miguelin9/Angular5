@@ -10,4 +10,5 @@ export class Command {
     comment?: string;
     tip?: number;
     total: number;
+    pay: boolean;
 }

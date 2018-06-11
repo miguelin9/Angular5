@@ -7,6 +7,10 @@ table {
   width: 100%;
 }
 
+.col-12 {
+  width: 100%;
+}
+
 .col-6 {
   width: 50%
 }
@@ -21,4 +25,9 @@ table {
 
 b {
   font-size: 20px;
+}
+
+.button {
+  display: inline-table;
+  margin: 10px;
 }

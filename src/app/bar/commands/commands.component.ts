@@ -47,6 +47,7 @@ export class CommandsComponent implements OnInit {
     this.commandService.selectCommand = new Command();
     this.commandService.selectCommand.state = true;
     this.commandService.selectCommand.productList = new Array<Product>();
+    this.commandService.selectCommand.datetimeOpen = new Date().toLocaleString();
   }
 
   editCommand(command: Command): void {

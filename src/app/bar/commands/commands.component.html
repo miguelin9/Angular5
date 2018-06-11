@@ -10,7 +10,12 @@
       </ng-container>
       <ng-container matColumnDef="state">
         <mat-header-cell *matHeaderCellDef mat-sort-header> ESTADO </mat-header-cell>
-        <mat-cell *matCellDef="let command"> {{command.state}} </mat-cell>
+        <mat-cell *matCellDef="let command">
+           <span *ngIf="command.pay; else contra">Pagado</span> 
+           <ng-template #contra>
+              <span>No Pagado</span>
+            </ng-template>
+          </mat-cell>
       </ng-container>
       <ng-container matColumnDef="table">
         <mat-header-cell *matHeaderCellDef mat-sort-header> MESA </mat-header-cell>
@@ -18,7 +23,7 @@
       </ng-container>
       <ng-container matColumnDef="total">
         <mat-header-cell *matHeaderCellDef mat-sort-header> TOTAL </mat-header-cell>
-        <mat-cell *matCellDef="let command"> {{command.total}} </mat-cell>
+        <mat-cell *matCellDef="let command"> {{command.total}} € </mat-cell>
       </ng-container>
       <ng-container matColumnDef="actions">
         <mat-header-cell *matHeaderCellDef>

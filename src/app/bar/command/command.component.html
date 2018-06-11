@@ -10,18 +10,33 @@
     <mat-card-content>
       <table class="mat-elevation-z8">
         <tr>
-          <td class="col-6">
+          <td class="col-6" #print>
+            <div class="block">
+              <mat-form-field class="col-12">
+                <input matInput min="0" autocomplete="off" type="number" placeholder="Mesa" [(ngModel)]='commandService.selectCommand.table' [ngModelOptions]="{standalone: true}">
+              </mat-form-field>
+            </div>
+            <div class="block">
+              <mat-form-field class='col-12'>
+                <input matInput autocomplete="off" type="text" placeholder="Comentario" [(ngModel)]='commandService.selectCommand.comment' [ngModelOptions]="{standalone: true}">
+              </mat-form-field>
+            </div>  
+            <div class="block">
+              <mat-form-field class='col-12'>
+                <input matInput min="0" autocomplete="off" type="number" placeholder="Propina" [(ngModel)]='commandService.selectCommand.tip' [ngModelOptions]="{standalone: true}">
+              </mat-form-field>
+            </div>    
             <div class="block">                
               <table class="mat-table">
                 <thead>
-                  <tr class="mat-header-row form-command">
+                  <tr class="mat-header-row">
                     <th class="mat-header-cell"> Producto </th>
                     <th class="mat-header-cell col-1"> Precio </th>
                     <th class="mat-header-cell col-1"> Borrar </th>
                   </tr>
                   </thead>
                 <tbody>
-                  <tr class="mat-row form-command" *ngFor="let product of commandService.selectCommand.productList">
+                  <tr class="mat-row" *ngFor="let product of commandService.selectCommand.productList">
                     <td class="mat-cell"> {{product.name}} </td>
                     <td class="mat-cell col-1"> {{product.price}} € </td>
                     <td class="mat-cell col-1">
@@ -30,35 +45,28 @@
                       </button>
                     </td>
                   </tr>
-                  <tr class="mat-row form-command">
+                  <tr class="mat-row">
                     <td class="mat-cell"><b>Total</b></td>
                     <td class="mat-cell"><b>{{getTotalCost()}} €</b></td>
                   </tr>
                 </tbody>
               </table>              
+            </div> 
+            <div class="button">
+              <button mat-raised-button color="primary" (click)="saveCommand(getTotalCost())">
+                Guardar
+              </button>
             </div>
-            <span *ngIf="commandService.selectCommand.state;" else aux color="warning">Sin pagar</span>
-            <ng-template #aux>
-              <span color="primary">Pagada</span>
-            </ng-template>
-            <div class="block">
-              <mat-form-field>
-                <input matInput min="0" autocomplete="off" type="number" placeholder="Mesa" [(ngModel)]='commandService.selectCommand.table' [ngModelOptions]="{standalone: true}">
-              </mat-form-field>
+            <div class="button">
+              <button mat-raised-button color="primary" (click)="payCommand(getTotalCost(), print)" *ngIf='!commandService.selectCommand.pay'>
+                Cobrar
+              </button>
             </div>
-            <div class="block">
-              <mat-form-field class='cl-6'>
-                <input matInput autocomplete="off" type="text" placeholder="Comentario" [(ngModel)]='commandService.selectCommand.comment' [ngModelOptions]="{standalone: true}">
-              </mat-form-field>
-            </div>  
-            <div class="block">
-              <mat-form-field class='cl-6'>
-                <input matInput autocomplete="off" type="number" placeholder="Propina" [(ngModel)]='commandService.selectCommand.tip' [ngModelOptions]="{standalone: true}">
-              </mat-form-field>
-            </div>   
-            <button mat-raised-button color="primary" (click)="saveCommand(getTotalCost())">
-              Guardar
-            </button>
+            <div class="button">
+              <button mat-raised-button color="primary" (click)="commandService.selectCommand.pay = false" *ngIf='commandService.selectCommand.pay'>
+                Rectificar
+              </button>
+            </div>
           </td>
           <td class="col-6">            
             <app-products-command></app-products-command>          

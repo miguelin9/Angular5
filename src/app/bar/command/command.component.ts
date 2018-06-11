@@ -16,8 +16,25 @@ export class CommandComponent implements OnInit {
 
   ngOnInit() {}
 
-  saveCommand(total: number) {
-    this.commandService.saveCommand(total);
+  saveCommand(total: number, pay: boolean) {
+    this.checkProducts();
+    if (!pay) {
+      pay = false;
+    }
+    if (this.commandService.selectCommand.productList.length <= 0) {
+      this.commandService.selectCommand.productList = new Array<Product>();
+    }
+    this.commandService.saveCommand(total, pay);
+  }
+
+  payCommand(total: number, print: Element) {
+    this.checkProducts();
+    this.saveCommand(total, true);
+    var printContents = print.innerHTML;
+    var popupWin = window.open('', '_blank', 'width=300,height=300');
+    popupWin.document.open();
+    popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" href="style.css" /></head><body onload="window.print()">' + printContents + '</body></html>');
+    popupWin.document.close();
   }
 
   getTotalCost(): number {
@@ -32,6 +49,12 @@ export class CommandComponent implements OnInit {
   deleteProduct(product: Product): void {
     let index = this.commandService.selectCommand.productList.indexOf(product);
     this.commandService.selectCommand.productList.splice(index, 1);
+  }
+
+  checkProducts() {
+    if (!this.commandService.selectCommand.productList) {
+      this.commandService.selectCommand.productList = new Array<Product>();
+    }
   }
 
 }

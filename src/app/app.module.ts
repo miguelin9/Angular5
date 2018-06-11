@@ -16,6 +16,8 @@ import { NgModule } from '@angular/core';
 // servicios
 import { ProductService } from './services/product/product.service';
 import { CommandService } from './services/command/command.service';
+import { AuthService } from './services/auth/auth.service';
+import { AuthGuardGuard } from './auth-guard.guard';
 
 // Dialogos (necesita entryComponents)
 import { YesNoDialogComponent } from './dialogs/yes-no-dialog/yes-no-dialog.component';
@@ -33,6 +35,8 @@ import { TablesComponent } from './bar/tables/tables.component';
 import { BarComponent } from './bar/bar.component';
 import { CommandComponent } from './bar/command/command.component';
 import { ProductsCommandComponent } from './bar/command/products-command/products-command.component';
+import { LoginComponent } from './login/login.component';
+
 
 
 @NgModule({
@@ -46,7 +50,8 @@ import { ProductsCommandComponent } from './bar/command/products-command/product
     TablesComponent,
     BarComponent,
     CommandComponent,
-    ProductsCommandComponent
+    ProductsCommandComponent,
+    LoginComponent
   ],
   entryComponents: [
     YesNoDialogComponent,
@@ -56,7 +61,7 @@ import { ProductsCommandComponent } from './bar/command/products-command/product
     AngularFireModule.initializeApp(environment.firebase, 'proyecto-tpv'),
     AngularFireDatabaseModule,
     // AngularFirestoreModule,
-    // AngularFireAuthModule,
+    AngularFireAuthModule,
     // AngularFireStorageModule,
     AppRoutingModule,
     BrowserModule,
@@ -65,7 +70,9 @@ import { ProductsCommandComponent } from './bar/command/products-command/product
   ],
   providers: [
     ProductService,
-    CommandService    
+    CommandService,
+    AuthService,
+    AuthGuardGuard    
   ],
   bootstrap: [AppComponent]
 })

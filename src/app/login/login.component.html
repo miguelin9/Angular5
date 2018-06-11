@@ -1,0 +1,19 @@
+<div class="center" *ngIf="!this.authService.loggedIn">
+  <h3>Entrar</h3>
+  <div>
+    <form>
+      <mat-form-field class="col-12">
+        <input matInput type="email" #email placeholder="Email" required>
+      </mat-form-field>
+      <mat-form-field class="col-12">
+        <input matInput type="password" #password placeholder="Contraseña" required>
+      </mat-form-field>
+      <button type="submit" mat-raised-button color="primary" cdkFocusInitial (click)="login(email.value, password.value)">Entrar</button>
+    </form>
+  </div>
+</div>
+
+<div class="out" *ngIf="this.authService.loggedIn">
+    <h3>¿Deseas salir?</h3>
+    <button type="submit" mat-raised-button color="primary" cdkFocusInitial (click)="logout()">Salir</button>
+  </div>

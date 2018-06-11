@@ -10,3 +10,7 @@
 mat-cell {
   cursor: default;
 }
+
+.col-12 {
+  width: 100%;
+}

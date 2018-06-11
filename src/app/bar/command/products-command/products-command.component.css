@@ -6,3 +6,7 @@
 .mat-column-actions {
   max-width: 15%;
 }
+
+.col-12 {
+  width: 100%;
+}

@@ -52,4 +52,11 @@ export class ProductsCommandComponent implements OnInit {
   delete(product): void {
     this.commandService.selectCommand.productList.pop();
   }
+
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim();
+    filterValue = filterValue.toLowerCase();
+    this.dataSource.filter = filterValue;
+  }
+  
 }

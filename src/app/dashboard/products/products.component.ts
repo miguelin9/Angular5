@@ -42,6 +42,12 @@ export class ProductsComponent implements OnInit {
     this.refreshData();
   }
 
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim();
+    filterValue = filterValue.toLowerCase();
+    this.dataSource.filter = filterValue;
+  }
+
   addProduct(): void {
     const dialogRef = this.matDialog.open(AddProductDialogComponent);
     dialogRef.componentInstance.isEdit = false;

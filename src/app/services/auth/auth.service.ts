@@ -21,7 +21,7 @@ export class AuthService {
       this.loggedIn = true;
       this.router.navigateByUrl('/bar');
     }).catch(err => {
-      console.log('error en el login: ', err.message);
+      alert('error en el login');
     });
   }
 
@@ -30,7 +30,7 @@ export class AuthService {
       this.loggedIn = false;
       this.router.navigate(['/']);
     }).catch(err => {
-      console.log('error en el logout: ', err.message);
+      alert('error en el logout');
     });
   }
 

@@ -3,6 +3,9 @@
     Productos
   </mat-card-title>
   <mat-card-content>
+    <mat-form-field class="col-12">
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
+    </mat-form-field>
     <mat-table class="mat-elevation-z8" #table [dataSource]="dataSource" matSort>
       <ng-container matColumnDef="name">
         <mat-header-cell *matHeaderCellDef mat-sort-header> NOMBRE </mat-header-cell>

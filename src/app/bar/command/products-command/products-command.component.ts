@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialog, MatSort, MatTableDataSource } from '@angular/material';
+import { MatDialog, MatSort, MatTableDataSource, MatPaginator } from '@angular/material';
 import { Product } from '../../../models/product';
 import { ProductService } from '../../../services/product/product.service';
 import { CommandService } from '../../../services/command/command.service';
@@ -16,6 +16,7 @@ export class ProductsCommandComponent implements OnInit {
   dataSource: MatTableDataSource<Product>; // lo mismos datos que el productList pero para poder ordenar en la tabla.
 
   @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(
     private productService: ProductService,
@@ -35,6 +36,8 @@ export class ProductsCommandComponent implements OnInit {
         });
         this.dataSource = new MatTableDataSource(this.productList);
         this.dataSource.sort = this.sort;
+        this.paginator._intl.itemsPerPageLabel = 'Productos por página';
+        this.dataSource.paginator = this.paginator;
       });
   }
 
@@ -58,5 +61,5 @@ export class ProductsCommandComponent implements OnInit {
     filterValue = filterValue.toLowerCase();
     this.dataSource.filter = filterValue;
   }
-  
+
 }

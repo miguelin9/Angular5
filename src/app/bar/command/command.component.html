@@ -53,7 +53,7 @@
               </table>              
             </div> 
             <div class="button">
-              <button mat-raised-button color="primary" (click)="saveCommand(getTotalCost())">
+              <button mat-raised-button color="primary" (click)="saveCommand(getTotalCost())" *ngIf='!commandService.selectCommand.pay'>
                 Guardar
               </button>
             </div>

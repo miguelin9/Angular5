@@ -19,9 +19,11 @@ export class CommandService {
     this.selectCommand.table = numberTable;
     this.selectCommand.pay = false;
     this.selectCommand.state = true;
-    this.selectCommand.productList = new Array<Product>();
-    this.selectCommand.datetimeOpen = new Date().toLocaleString();
-    this.selectCommand.datetimeClose = undefined;
+    if (!this.selectCommand.productList) {
+      this.selectCommand.productList = new Array<Product>();
+      this.selectCommand.datetimeOpen = new Date().toLocaleString();
+      this.selectCommand.datetimeClose = undefined;
+    }
   }
 
   openCommandWithEdit(command: Command) {
@@ -44,6 +46,7 @@ export class CommandService {
     } else {
       this.addCommand(this.selectCommand);
     }
+    this.selectCommand = new Command();
   }
 
   updateCommand(command: Command) {

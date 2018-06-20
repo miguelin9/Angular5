@@ -45,15 +45,13 @@ export class ProductsCommandComponent implements OnInit {
     this.refreshData();
   }
 
-  add(product): void {
+  add(product: Product): void {
     this.commandService.selectCommand.productList.push({
       name: product.name,
       price: product.price
     });
-  }
-
-  delete(product): void {
-    this.commandService.selectCommand.productList.pop();
+    product.stock = product.stock - 1;
+    this.productService.updateProduct(product);
   }
 
   applyFilter(filterValue: string) {

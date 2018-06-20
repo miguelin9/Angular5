@@ -9,12 +9,12 @@
     <input matInput type="number" placeholder="Precio" [(ngModel)]='product.price' required>
   </mat-form-field>
   <mat-form-field class='cl-6'>
-    <input matInput type="number" placeholder="Stock" [(ngModel)]='product.stock' required>
+    <input matInput type="number" min="0" placeholder="Stock" [(ngModel)]='product.stock' required>
   </mat-form-field>
 </div>
 <div mat-dialog-actions>
   <button mat-raised-button mat-dialog-close>Cancelar</button>
-  <ng-template [ngIf]="product.name != '' && product.price != undefined && product.stock != undefined">
+  <ng-template [ngIf]="product.name != '' && product.price != undefined && product.stock >= 0">
     <button mat-raised-button color="primary" *ngIf="!isEdit" (click)='addProduct()' cdkFocusInitial>Aceptar</button>
     <button mat-raised-button color="primary" *ngIf="isEdit"(click)='editProduct()' cdkFocusInitial>Aceptar</button>
   </ng-template>

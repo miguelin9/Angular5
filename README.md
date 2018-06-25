@@ -1,6 +1,12 @@
-# ProyectoTpv
+# Angular5
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.2.
+
+## Development
+
+Install Node.js® and npm if they are not already on your machine. 
+It is necessary to install the libraries with `npm install` from the project directory.
+Optional: Install the Angular CLI globally. `npm install -g @angular/cli` to be able to use commands to Angular.
 
 ## Development server
 

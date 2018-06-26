@@ -6,7 +6,10 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Install Node.js® and npm if they are not already on your machine. 
 It is necessary to install the libraries with `npm install` from the project directory.
-Optional: Install the Angular CLI globally. `npm install -g @angular/cli` to be able to use commands to Angular.
+Install the Angular CLI globally. `npm install -g @angular/cli` to be able to use commands to Angular.
+Login:
+- Email: miguel@miguel.com
+- Password: miguel
 
 ## Development server
 
